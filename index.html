@@ -49,6 +49,15 @@
       }
     }
 
+    window.onload = () => {
+      const searchStr = location.search;
+      const urlParams = new URLSearchParams(searchStr);
+      const deepLink = urlParams.get("url");
+      if (deepLink) {
+        input.value = deepLink;
+      }
+    };
+
     input.addEventListener("input", () => {
       const url = input.value.trim();
       if (!url) {
