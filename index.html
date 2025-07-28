@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep Link Tester</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    .qr {
+      margin-top: 1.5rem;
+    }
+    img {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Deep Link Tester</h1>
+
+  <input type="text" id="urlInput" placeholder="例: myapp://home または https://example.com" />
+  <button onclick="goToURL()">Go</button>
+
+  <div class="qr" id="qrContainer"></div>
+
+  <script>
+    const input = document.getElementById("urlInput");
+    const qrContainer = document.getElementById("qrContainer");
+
+    function goToURL() {
+      const url = input.value.trim();
+      if (!url) return;
+      try {
+        location.href = url;
+      } catch (error) {
+        console.error("Invalid URL:", error);
+      }
+    }
+
+    input.addEventListener("input", () => {
+      const url = input.value.trim();
+      if (!url) {
+        qrContainer.innerHTML = "";
+        return;
+      }
+    });
+  </script>
+</body>
+</html>
